@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -19,7 +20,7 @@ public class StackArgumentsController {
     }
 
     @PutMapping("/stack/arguments")
-    public ResponseModel stackArguments(StackArgumentsModel data) {
+    public ResponseModel stackArguments(@RequestBody StackArgumentsModel data) {
         data.getArguments().forEach(calculator::push);
 
         return new ResponseModel(calculator.size(), "");

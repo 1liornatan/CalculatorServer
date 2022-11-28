@@ -46,6 +46,11 @@ public class OperateController {
             }
         }
 
-        return ResponseEntity.ok(new ResponseModel(calculator.makeOperation(opr), ""));
+        try {
+            Integer result = calculator.makeOperation(opr);
+            return ResponseEntity.ok(new ResponseModel(result, ""));
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(new ResponseModel(-1, e.getMessage()));
+        }
     }
 }
