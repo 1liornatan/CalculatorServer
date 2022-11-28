@@ -14,10 +14,22 @@ public class Calculator {
         numbersStack = new Stack<>();
     }
 
-    public static Integer makeOperation(Operations operation, List<Integer> arguments) {
+    public static Integer makeIndependentOperation(Operations operation, List<Integer> arguments) {
         int num1 = arguments.get(0);
         int num2 = arguments.get(1);
 
+        return getResult(operation, num1, num2);
+
+    }
+
+    public Integer makeOperation(Operations operation) {
+        int num1 = numbersStack.pop();
+        int num2 = numbersStack.pop();
+
+        return getResult(operation, num1, num2);
+    }
+
+    private static Integer getResult(Operations operation, int num1, int num2) {
         return switch (operation) {
             case PLUS -> plus(num1, num2);
             case MINUS -> minus(num1, num2);
@@ -27,19 +39,10 @@ public class Calculator {
             case FACT -> fact(num1);
             case ABS -> abs(num1);
         };
-
     }
 
     public void push(int num) {
         numbersStack.push(num);
-    }
-
-    public Integer pop() {
-        return numbersStack.pop();
-    }
-
-    public boolean isContainNumbers(int amount) {
-        return (numbersStack.size() >= amount);
     }
 
     public static Integer plus(int num1, int num2) {
@@ -79,4 +82,12 @@ public class Calculator {
         return fact;
     }
 
+    public Integer size() {
+        return numbersStack.size();
+    }
+
+    public void delete(Integer count) {
+        for(int i = 0; i < count; i++)
+            numbersStack.pop();
+    }
 }
