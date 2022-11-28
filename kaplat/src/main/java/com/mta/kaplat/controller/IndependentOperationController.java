@@ -51,11 +51,12 @@ public class IndependentOperationController {
             }
         }
 
-        if(operation == Operations.DIVIDE && arguments.get(1) == 0)
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(new ResponseModel(-1, Constants.ERROR_DIVIDE_ZERO));
-        else if(operation == Operations.FACT && arguments.get(0) < 0)
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(new ResponseModel(-1, Constants.ERROR_FACT_NEGATIVE));
 
-        return ResponseEntity.ok(new ResponseModel(Calculator.makeIndependentOperation(operation, arguments), ""));
+        try {
+            Integer result = Calculator.makeIndependentOperation(operation, arguments);
+            return ResponseEntity.ok(new ResponseModel(result, ""));
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(new ResponseModel(-1, e.getMessage()));
+        }
     }
 }

@@ -1,5 +1,8 @@
 package com.mta.kaplat.logic.math;
 
+import com.mta.kaplat.constants.Constants;
+import com.mta.kaplat.controller.exceptions.DivideInZeroException;
+import com.mta.kaplat.controller.exceptions.NegativeFactException;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -16,7 +19,10 @@ public class Calculator {
 
     public static Integer makeIndependentOperation(Operations operation, List<Integer> arguments) {
         int num1 = arguments.get(0);
-        int num2 = arguments.get(1);
+        int num2 = 1;
+
+        if(arguments.size() > 1)
+            num2 = arguments.get(1);
 
         return getResult(operation, num1, num2);
 
@@ -24,7 +30,10 @@ public class Calculator {
 
     public Integer makeOperation(Operations operation) {
         int num1 = numbersStack.pop();
-        int num2 = numbersStack.pop();
+        int num2 = 1;
+
+        if(operation != Operations.FACT && operation != Operations.ABS)
+            num2 = numbersStack.pop();
 
         return getResult(operation, num1, num2);
     }
@@ -58,6 +67,9 @@ public class Calculator {
     }
 
     public static Integer divide(int num1, int num2) {
+        if(num2 == 0)
+            throw new DivideInZeroException(Constants.ERROR_DIVIDE_ZERO);
+
         return num1 / num2;
     }
 
@@ -70,6 +82,9 @@ public class Calculator {
     }
 
     public static Integer fact(int num) {
+        if(num < 0)
+            throw new NegativeFactException(Constants.ERROR_FACT_NEGATIVE);
+
         return calcFactorial(num);
     }
 
