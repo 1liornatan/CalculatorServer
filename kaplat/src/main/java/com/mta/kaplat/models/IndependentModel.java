@@ -1,21 +1,16 @@
 package com.mta.kaplat.models;
 
+import lombok.Getter;
+
 import java.util.List;
 
+@Getter
 public class IndependentModel {
-    List<Integer> numbersList;
+    List<Integer> arguments;
     String operation;
 
-    public IndependentModel(List<Integer> numbersList, String operation) {
-        this.numbersList = numbersList;
+    public IndependentModel(List<Integer> arguments, String operation) {
+        this.arguments = arguments;
         this.operation = operation;
-    }
-
-    public List<Integer> getNumbersList() {
-        return numbersList;
-    }
-
-    public String getOperation() {
-        return operation;
     }
 }
