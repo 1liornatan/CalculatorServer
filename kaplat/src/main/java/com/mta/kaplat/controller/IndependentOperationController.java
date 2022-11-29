@@ -7,8 +7,8 @@ import com.mta.kaplat.models.IndependentModel;
 import com.mta.kaplat.models.ResponseModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -17,8 +17,8 @@ import java.util.List;
 @RestController
 public class IndependentOperationController {
 
-    @RequestMapping("/independent/calculate")
-    public ResponseEntity<ResponseModel> HelloWorld(@RequestBody IndependentModel data) {
+    @PostMapping("/independent/calculate")
+    public ResponseEntity<ResponseModel> operate(@RequestBody IndependentModel data) {
         List<Integer> arguments = data.getArguments();
         String reqOperation = data.getOperation();
         Operations operation = Operations.valueOf(reqOperation.toUpperCase());
