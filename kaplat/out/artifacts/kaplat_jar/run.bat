@@ -1,0 +1,1 @@
+java -jar kaplat.jar com/mta/kaplat/KaplatApplication.java
