@@ -6,16 +6,10 @@ import com.mta.kaplat.controller.exceptions.NegativeFactException;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Stack;
 
 
 @Component
 public class Calculator {
-    private final Stack<Integer> numbersStack;
-
-    public Calculator() {
-        numbersStack = new Stack<>();
-    }
 
     public static Integer makeIndependentOperation(Operations operation, List<Integer> arguments) {
         int num1 = arguments.get(0);
@@ -28,12 +22,14 @@ public class Calculator {
 
     }
 
-    public Integer makeOperation(Operations operation) {
-        int num1 = numbersStack.pop();
+    public static Integer makeOperation(Operations operation, List<Integer> numbersList) {
+        int num1 = numbersList.get(0);
         int num2 = 1;
 
-        if(operation != Operations.FACT && operation != Operations.ABS)
-            num2 = numbersStack.pop();
+        Integer requiredArgs = operation.getRequiredArgs();
+
+        if(requiredArgs > 1)
+            num2 = numbersList.get(1);
 
         return getResult(operation, num1, num2);
     }
@@ -48,10 +44,6 @@ public class Calculator {
             case FACT -> fact(num1);
             case ABS -> abs(num1);
         };
-    }
-
-    public void push(int num) {
-        numbersStack.push(num);
     }
 
     public static Integer plus(int num1, int num2) {
@@ -97,12 +89,4 @@ public class Calculator {
         return fact;
     }
 
-    public Integer size() {
-        return numbersStack.size();
-    }
-
-    public void delete(Integer count) {
-        for(int i = 0; i < count; i++)
-            numbersStack.pop();
-    }
 }

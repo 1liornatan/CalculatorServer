@@ -5,7 +5,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 public class NotEnoughArgsException extends RuntimeException {
 
-    public NotEnoughArgsException(String message) {
-        super(message);
+    public NotEnoughArgsException(String operation, Integer required, Integer size) {
+        super(String.format("Error: cannot implement operation %s. It requires %d arguments and the stack has only %d arguments",
+                operation, required, size));
     }
 }
