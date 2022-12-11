@@ -21,42 +21,43 @@ public class IndependentOperationController {
     public ResponseEntity<ResponseModel> operate(@RequestBody IndependentModel data) {
         List<Integer> arguments = data.getArguments();
         String reqOperation = data.getOperation();
-        Operations operation = Operations.valueOf(reqOperation.toUpperCase());
-
-        int size = arguments.size();
-
-        switch (operation) {
-            case PLUS, MINUS, TIMES, POW, DIVIDE -> {
-                if (size > 2) {
-                    return ResponseEntity.status(HttpStatus.CONFLICT)
-                            .body(new ResponseModel(-1, Constants.ERROR_TOO_MANY_ARGUMENTS + reqOperation));
-                } else if (size < 2) {
-                    return ResponseEntity.status(HttpStatus.CONFLICT)
-                            .body(new ResponseModel(-1, Constants.ERROR_NO_ARGUMENTS + reqOperation));
-                }
-            }
-            case FACT, ABS -> {
-                if (size > 1) {
-                    return ResponseEntity.status(HttpStatus.CONFLICT)
-                            .body(new ResponseModel(-1, Constants.ERROR_TOO_MANY_ARGUMENTS + reqOperation));
-                } else if (size < 1) {
-                    return ResponseEntity.status(HttpStatus.CONFLICT)
-                            .body(new ResponseModel(-1, Constants.ERROR_NO_ARGUMENTS + reqOperation));
-                }
-            }
-            default -> {
-                // ERROR NO OPERATION
-                return ResponseEntity.status(HttpStatus.CONFLICT)
-                        .body(new ResponseModel(-1, Constants.ERROR_NO_OPERATION + reqOperation));
-            }
-        }
-
-
+        Operations operation;
         try {
-            Integer result = Calculator.makeIndependentOperation(operation, arguments);
-            return ResponseEntity.ok(new ResponseModel(result, ""));
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(new ResponseModel(-1, e.getMessage()));
+            operation = Operations.valueOf(reqOperation.toUpperCase());
+            int size = arguments.size();
+
+            switch (operation) {
+                case PLUS, MINUS, TIMES, POW, DIVIDE -> {
+                    if (size > 2) {
+                        return ResponseEntity.status(HttpStatus.CONFLICT)
+                                .body(new ResponseModel(-1, Constants.ERROR_TOO_MANY_ARGUMENTS + reqOperation));
+                    } else if (size < 2) {
+                        return ResponseEntity.status(HttpStatus.CONFLICT)
+                                .body(new ResponseModel(-1, Constants.ERROR_NO_ARGUMENTS + reqOperation));
+                    }
+                }
+                case FACT, ABS -> {
+                    if (size > 1) {
+                        return ResponseEntity.status(HttpStatus.CONFLICT)
+                                .body(new ResponseModel(-1, Constants.ERROR_TOO_MANY_ARGUMENTS + reqOperation));
+                    } else if (size < 1) {
+                        return ResponseEntity.status(HttpStatus.CONFLICT)
+                                .body(new ResponseModel(-1, Constants.ERROR_NO_ARGUMENTS + reqOperation));
+                    }
+                }
+            }
+
+
+            try {
+                Integer result = Calculator.makeIndependentOperation(operation, arguments);
+                return ResponseEntity.ok(new ResponseModel(result, ""));
+            } catch (RuntimeException e) {
+                return ResponseEntity.status(HttpStatus.CONFLICT).body(new ResponseModel(-1, e.getMessage()));
+            }
+        } catch (IllegalArgumentException e) {
+            // ERROR NO OPERATION
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body(new ResponseModel(-1, Constants.ERROR_NO_OPERATION + reqOperation));
         }
     }
 }
