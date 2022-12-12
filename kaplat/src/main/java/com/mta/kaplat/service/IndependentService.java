@@ -12,7 +12,7 @@ import java.util.List;
 @Service("independent-service")
 public class IndependentService {
 
-    public Integer operate(String reqOperation, List<Integer> arguments) {
+    public Integer calculate(String reqOperation, List<Integer> arguments) {
         Operations operation = Validator.lookup(reqOperation);
 
         int size = arguments.size();

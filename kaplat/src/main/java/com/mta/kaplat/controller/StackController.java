@@ -29,6 +29,6 @@ public class StackController {
 
     @GetMapping("/stack/operate")
     public ResponseModel operate(String operation) {
-        return new ResponseModel(service.operate(operation), "");
+        return new ResponseModel(service.calculate(operation), "");
     }
 }
