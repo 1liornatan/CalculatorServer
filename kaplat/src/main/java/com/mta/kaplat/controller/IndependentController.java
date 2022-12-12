@@ -22,7 +22,7 @@ public class IndependentController {
     final IndependentService independentService;
 
     @PostMapping("/independent/calculate")
-    public ResponseEntity<ResponseModel> operate(@RequestBody IndependentModel data) {
-        return independentService.operate(data);
+    public ResponseModel operate(@RequestBody IndependentModel data) {
+        return new ResponseModel(independentService.operate(data.getOperation(), data.getArguments()), "");
     }
 }
