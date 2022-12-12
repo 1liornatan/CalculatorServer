@@ -35,7 +35,7 @@ public class StackService {
         return stack.size();
     }
 
-    public Integer operate(String operation) {
+    public Integer calculate(String operation) {
         Operations opr = Validator.lookup(operation);
         int size = stack.size();
         Integer requiredArgs = opr.getRequiredArgs();
