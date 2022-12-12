@@ -5,23 +5,22 @@ import com.mta.kaplat.logic.math.Calculator;
 import com.mta.kaplat.logic.math.NumbersStack;
 import com.mta.kaplat.logic.math.Operations;
 import com.mta.kaplat.logic.math.Validator;
-import com.mta.kaplat.models.ResponseModel;
-import com.mta.kaplat.models.StackArgumentsModel;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service("stack-service")
 public class StackService {
     final NumbersStack stack;
 
-    public ResponseModel stackArgs(StackArgumentsModel data) {
-        data.getArguments().forEach(stack::push);
-        return new ResponseModel(stack.size(), "");
+    public Integer stackArgs(List<Integer> data) {
+        data.forEach(stack::push);
+        return stack.size();
     }
 
-    public ResponseEntity<ResponseModel> deleteArgs(Integer count) {
+    public Integer deleteArgs(Integer count) {
         int size = stack.size();
 
         if(size < count)
@@ -29,14 +28,14 @@ public class StackService {
 
         stack.delete(count);
 
-        return ResponseEntity.ok(new ResponseModel(stack.size(), ""));
+        return stack.size();
     }
 
-    public ResponseModel getStackSize() {
-        return new ResponseModel(stack.size(), "");
+    public Integer getStackSize() {
+        return stack.size();
     }
 
-    public ResponseEntity<ResponseModel> operate(String operation) {
+    public Integer operate(String operation) {
         Operations opr = Validator.lookup(operation);
         int size = stack.size();
         Integer requiredArgs = opr.getRequiredArgs();
@@ -44,7 +43,6 @@ public class StackService {
         if (size < requiredArgs)
             throw new NotEnoughArgsException(operation, requiredArgs, size);
 
-        Integer result = Calculator.makeOperation(opr, stack.popToList(requiredArgs));
-        return ResponseEntity.ok(new ResponseModel(result, ""));
+        return Calculator.makeOperation(opr, stack.popToList(requiredArgs));
     }
 }
