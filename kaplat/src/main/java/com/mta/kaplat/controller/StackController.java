@@ -1,7 +1,7 @@
 package com.mta.kaplat.controller;
 
-import com.mta.kaplat.models.ResponseModel;
-import com.mta.kaplat.models.StackArgumentsModel;
+import com.mta.kaplat.model.ResponseModel;
+import com.mta.kaplat.model.StackArgumentsModel;
 import com.mta.kaplat.service.StackService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

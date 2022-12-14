@@ -1,14 +1,12 @@
 package com.mta.kaplat.logic.math;
 
-import com.mta.kaplat.constants.Constants;
+import com.mta.kaplat.constant.Constants;
 import com.mta.kaplat.controller.exceptions.DivideInZeroException;
 import com.mta.kaplat.controller.exceptions.NegativeFactException;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 
-@Component
 public class Calculator {
 
     public static Integer makeIndependentOperation(Operations operation, List<Integer> arguments) {

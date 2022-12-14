@@ -1,7 +1,7 @@
 package com.mta.kaplat.controller;
 
-import com.mta.kaplat.models.IndependentModel;
-import com.mta.kaplat.models.ResponseModel;
+import com.mta.kaplat.model.IndependentModel;
+import com.mta.kaplat.model.ResponseModel;
 import com.mta.kaplat.service.IndependentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;

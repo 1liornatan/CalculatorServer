@@ -1,6 +1,6 @@
 package com.mta.kaplat.controller.exceptions;
 
-import com.mta.kaplat.constants.Constants;
+import com.mta.kaplat.constant.Constants;
 
 public class NoSuchOperationException extends RuntimeException {
 
