@@ -1,4 +1,4 @@
-package com.mta.kaplat.constants;
+package com.mta.kaplat.constant;
 
 public class Constants {
     public static final String ERROR_DIVIDE_ZERO = "Error while performing operation Divide: division by 0";

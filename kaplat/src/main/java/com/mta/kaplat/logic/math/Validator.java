@@ -1,6 +1,6 @@
 package com.mta.kaplat.logic.math;
 
-import com.mta.kaplat.constants.Constants;
+import com.mta.kaplat.constant.Constants;
 import com.mta.kaplat.controller.exceptions.NoSuchOperationException;
 
 public class Validator {

@@ -1,4 +1,4 @@
-package com.mta.kaplat.models;
+package com.mta.kaplat.model;
 
 import lombok.Getter;
 
