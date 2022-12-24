@@ -14,6 +14,7 @@ import java.util.List;
 @Service("stack-service")
 public class StackService {
     final NumbersStack stack;
+    String lastCalculateArgs;
 
     public Integer stackArgs(List<Integer> data) {
         data.forEach(stack::push);
@@ -43,6 +44,27 @@ public class StackService {
         if (size < requiredArgs)
             throw new NotEnoughArgsException(operation, requiredArgs, size);
 
-        return Calculator.makeOperation(opr, stack.popToList(requiredArgs));
+        List<Integer> numbersList = stack.popToList(requiredArgs);
+        updateCalculateArgs(numbersList);
+        return Calculator.makeOperation(opr, numbersList);
+    }
+
+    private void updateCalculateArgs(List<Integer> numbersList) {
+        int size = numbersList.size();
+        if(size <= 0)
+            return;
+
+        lastCalculateArgs = numbersList.get(0).toString();
+        for(int i = 1; i < size; i++) {
+            lastCalculateArgs = lastCalculateArgs + ", " + numbersList.get(i);
+        }
+    }
+
+    public String getStackContent() {
+        return stack.toString();
+    }
+
+    public String getLastCalculateArgs() {
+        return lastCalculateArgs;
     }
 }

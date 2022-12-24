@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.ThreadContext;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -32,7 +33,8 @@ public class RequestsAspect {
 
     @Around("inControllerLayer()")
     public Object test(ProceedingJoinPoint jp) throws Throwable {
-        int currentCount = requestCounter.increase();
+        Integer currentCount = requestCounter.increase();
+        ThreadContext.put(Constants.CTX_COUNT_ARG, currentCount.toString());
         HttpServletRequest httpServletRequest = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
         String method = httpServletRequest.getMethod();
         String requestURI = httpServletRequest.getRequestURI();
