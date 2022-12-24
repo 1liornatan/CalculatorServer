@@ -23,8 +23,8 @@ public class StackController {
         Integer stackSizeAfter = service.stackArgs(data.getArguments());
         Integer arguments = data.getArguments().size();
         logger.info(String.format("Adding total of %d argument(s) to the stack | Stack size: %d", arguments, stackSizeAfter));
-        logger.debug("Adding arguments: %s | Stack size before %d | stack size after %d",
-                data.getArguments().toString(), stackSizeBefore, stackSizeAfter);
+        logger.debug(String.format("Adding arguments: %s | Stack size before %d | stack size after %d",
+                data.getArguments().toString().replace("[", "").replace("]", "").replace(" ", ""), stackSizeBefore, stackSizeAfter));
         return new ResponseModel(stackSizeAfter, "");
     }
 
@@ -33,7 +33,7 @@ public class StackController {
         Logger logger = LogManager.getLogger(Constants.LOGGER_STACK);
         Integer stackSize = service.getStackSize();
         logger.info(String.format("Stack size is %d", stackSize));
-        logger.info(String.format("Stack content (first == top): %s", service.getStackContent()));
+        logger.debug(String.format("Stack content (first == top): %s", service.getStackContent()));
         return new ResponseModel(stackSize, "");
     }
 
@@ -54,7 +54,7 @@ public class StackController {
 
         logger.info(String.format("Performing operation %s. Result is %d | stack size: %d",
                 operation, calculate, stackSizeAfter));
-        logger.debug("Performing operation: %s(%s) = %d", operation, service.getLastCalculateArgs(), calculate);
+        logger.debug(String.format("Performing operation: %s(%s) = %d", operation, service.getLastCalculateArgs(), calculate));
         return new ResponseModel(calculate, "");
     }
 }

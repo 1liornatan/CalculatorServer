@@ -1,4 +1,4 @@
-package com.mta.kaplat.controller.exceptions;
+package com.mta.kaplat.logic.exceptions;
 
 import com.mta.kaplat.constant.Constants;
 

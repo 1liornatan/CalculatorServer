@@ -30,7 +30,7 @@ public class IndependentController {
                 operation, calculate));
         logger.debug(String.format("Performing operation: %s(%s) = %d",
                 operation,
-                arguments.toString().replace("[", "").replace("]", "").trim(), calculate));
+                arguments.toString().replace("[", "").replace("]", "").replace(" ", ""), calculate));
         return new ResponseModel(calculate, "");
     }
 }

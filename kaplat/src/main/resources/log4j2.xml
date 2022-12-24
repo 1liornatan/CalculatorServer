@@ -4,28 +4,28 @@
     <Appenders>
         <File name="independentFile" fileName="logs/independent.log" append="false">
             <PatternLayout>
-                <Pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} %-5p: %msg | request #%X{requestCount}%n</Pattern>
+                <Pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} %p: %msg | request #%X{requestCount}%n</Pattern>
             </PatternLayout>
         </File>
 
         <File name="requestsFile" fileName="logs/requests.log" append="false">
             <PatternLayout>
-                <Pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} %-5p: %msg | request #%X{requestCount}%n</Pattern>
+                <Pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} %p: %msg | request #%X{requestCount}%n</Pattern>
             </PatternLayout>
         </File>
 
         <File name="stackFile" fileName="logs/stack.log" append="false">
             <PatternLayout>
-                <Pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} %-5p: %msg | request #%X{requestCount}%n</Pattern>
+                <Pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} %p: %msg | request #%X{requestCount}%n</Pattern>
             </PatternLayout>
         </File>
 
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{dd-MM-yyyy HH:mm:ss.SSS} %-5p: %msg | request #%X{requestCount}%n"/>
+            <PatternLayout pattern="%d{dd-MM-yyyy HH:mm:ss.SSS} %p: %msg | request #%X{requestCount}%n"/>
         </Console>
 
         <Console name="Console-Default" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{dd-MM-yyyy HH:mm:ss.SSS} %-5p: %msg%n"/>
+            <PatternLayout pattern="%d{dd-MM-yyyy HH:mm:ss.SSS} %p: %msg%n"/>
         </Console>
 
     </Appenders>

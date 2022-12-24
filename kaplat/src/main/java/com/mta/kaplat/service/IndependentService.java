@@ -1,7 +1,7 @@
 package com.mta.kaplat.service;
 
-import com.mta.kaplat.controller.exceptions.NotEnoughArgsIndependentException;
-import com.mta.kaplat.controller.exceptions.TooManyArgsException;
+import com.mta.kaplat.logic.exceptions.NotEnoughArgsIndependentException;
+import com.mta.kaplat.logic.exceptions.TooManyArgsException;
 import com.mta.kaplat.logic.math.Calculator;
 import com.mta.kaplat.logic.math.Operations;
 import com.mta.kaplat.logic.math.Validator;

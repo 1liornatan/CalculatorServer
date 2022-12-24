@@ -2,9 +2,8 @@ package com.mta.kaplat.logic.math;
 
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Component
 public class NumbersStack {
@@ -34,6 +33,14 @@ public class NumbersStack {
 
     public void push(int num) {
         numbersStack.push(num);
+    }
+
+    @Override
+    public String toString() {
+        List<Integer> numbersList = numbersStack.stream().collect(Collectors.toList());
+        Collections.reverse(numbersList);
+
+        return numbersList.toString();
     }
 
 }

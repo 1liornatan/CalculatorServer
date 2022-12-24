@@ -1,6 +1,6 @@
 package com.mta.kaplat.service;
 
-import com.mta.kaplat.controller.exceptions.NotEnoughArgsException;
+import com.mta.kaplat.logic.exceptions.NotEnoughArgsException;
 import com.mta.kaplat.logic.math.Calculator;
 import com.mta.kaplat.logic.math.NumbersStack;
 import com.mta.kaplat.logic.math.Operations;
@@ -56,7 +56,7 @@ public class StackService {
 
         lastCalculateArgs = numbersList.get(0).toString();
         for(int i = 1; i < size; i++) {
-            lastCalculateArgs = lastCalculateArgs + ", " + numbersList.get(i);
+            lastCalculateArgs = lastCalculateArgs + "," + numbersList.get(i);
         }
     }
 
@@ -67,4 +67,5 @@ public class StackService {
     public String getLastCalculateArgs() {
         return lastCalculateArgs;
     }
+
 }
