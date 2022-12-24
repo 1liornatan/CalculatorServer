@@ -7,5 +7,10 @@ public class Constants {
     public static final String ERROR_NO_ARGUMENTS = "Error: Not enough arguments to perform the operation ";
     public static final String ERROR_TOO_MANY_ARGUMENTS = "Error: Too many arguments to perform the operation ";
 
+    public static final String LOGGER_REQUEST = "request-logger";
+    public static final String LOGGER_STACK = "stack-logger";
+    public static final String LOGGER_INDEPENDENT = "independent-logger";
+
+    public static final String CTX_COUNT_ARG = "requestCount";
     public static final Integer ERROR_CODE = 409;
 }

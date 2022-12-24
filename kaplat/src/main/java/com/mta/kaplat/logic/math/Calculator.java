@@ -1,8 +1,8 @@
 package com.mta.kaplat.logic.math;
 
 import com.mta.kaplat.constant.Constants;
-import com.mta.kaplat.controller.exceptions.DivideInZeroException;
-import com.mta.kaplat.controller.exceptions.NegativeFactException;
+import com.mta.kaplat.logic.exceptions.DivideInZeroException;
+import com.mta.kaplat.logic.exceptions.NegativeFactException;
 
 import java.util.List;
 

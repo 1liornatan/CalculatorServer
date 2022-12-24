@@ -1,4 +1,4 @@
-package com.mta.kaplat.controller.exceptions;
+package com.mta.kaplat.logic.exceptions;
 
 public class NegativeFactException extends RuntimeException {
 

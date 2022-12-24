@@ -1,7 +1,7 @@
 package com.mta.kaplat.logic.math;
 
 import com.mta.kaplat.constant.Constants;
-import com.mta.kaplat.controller.exceptions.NoSuchOperationException;
+import com.mta.kaplat.logic.exceptions.NoSuchOperationException;
 
 public class Validator {
     public static Operations lookup(String opr) {
