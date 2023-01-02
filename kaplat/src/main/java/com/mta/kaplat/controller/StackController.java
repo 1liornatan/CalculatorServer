@@ -1,6 +1,5 @@
 package com.mta.kaplat.controller;
 
-import clojure.lang.Cons;
 import com.mta.kaplat.constant.Constants;
 import com.mta.kaplat.model.ResponseModel;
 import com.mta.kaplat.model.StackArgumentsModel;
@@ -24,7 +23,7 @@ public class StackController {
         Integer arguments = data.getArguments().size();
         logger.info(String.format("Adding total of %d argument(s) to the stack | Stack size: %d", arguments, stackSizeAfter));
         logger.debug(String.format("Adding arguments: %s | Stack size before %d | stack size after %d",
-                data.getArguments().toString().replace("[", "").replace("]", "").replace(" ", ""), stackSizeBefore, stackSizeAfter));
+                data.getArguments().toString().replace("[", "").replace("]", "").replaceAll(" ", ""), stackSizeBefore, stackSizeAfter));
         return new ResponseModel(stackSizeAfter, "");
     }
 
