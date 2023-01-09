@@ -4,7 +4,6 @@ import com.mta.kaplat.aspect.log.counter.RequestCounter;
 import com.mta.kaplat.constant.Constants;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.ThreadContext;
@@ -12,8 +11,6 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -32,9 +29,9 @@ public class RequestsAspect {
     public void inControllerLayer() {}
 
     @Around("inControllerLayer()")
-    public Object test(ProceedingJoinPoint jp) throws Throwable {
-        Integer currentCount = requestCounter.increase();
-        ThreadContext.put(Constants.CTX_COUNT_ARG, currentCount.toString());
+    public Object aroundLayerForControllers(ProceedingJoinPoint jp) throws Throwable {
+        int currentCount = requestCounter.increase();
+        ThreadContext.put(Constants.CTX_COUNT_ARG, Integer.toString(currentCount));
         HttpServletRequest httpServletRequest = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
         String method = httpServletRequest.getMethod();
         String requestURI = httpServletRequest.getRequestURI();
